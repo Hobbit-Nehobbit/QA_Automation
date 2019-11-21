@@ -232,3 +232,16 @@
 2019-19-11 17:25:28   INFO [pages.MegalotePage] : Mne est 18
 2019-19-11 17:25:28   INFO [pages.MegalotePage] : zakryl tutorial
 2019-19-11 17:49:30   INFO [pages.KarePage] : Mne net 18
+2019-21-11 14:05:35   INFO [pages.KarePage] : Mne net 18
+2019-21-11 15:11:53   INFO [libs.ActionsWithElements] : Element was clicked
+2019-21-11 15:11:53  ERROR [libs.ActionsWithElements] : Can't work with element 
+2019-21-11 15:12:16   INFO [libs.ActionsWithElements] : Element was clicked
+2019-21-11 15:12:16  ERROR [libs.ActionsWithElements] : Can't work with element 
+2019-21-11 15:12:51   INFO [libs.ActionsWithElements] : Element was clicked
+2019-21-11 15:12:51  ERROR [libs.ActionsWithElements] : Can't work with element 
+2019-21-11 15:15:38   INFO [libs.ActionsWithElements] : Element was clicked
+2019-21-11 15:15:43  ERROR [libs.ActionsWithElements] : Can't work with element 
+2019-21-11 15:19:26   INFO [libs.ActionsWithElements] : Element was clicked
+2019-21-11 15:19:27  ERROR [libs.ActionsWithElements] : Can't work with element 
+2019-21-11 15:20:42   INFO [libs.ActionsWithElements] : Element was clicked
+2019-21-11 15:20:42  ERROR [libs.ActionsWithElements] : Can't work with element 
