@@ -12,10 +12,12 @@ import parentPage.ParentPage;
  */
 public class KarePage extends ParentPage {
     public KarePage(WebDriver webDriver) {
-        super(webDriver);
+        super(webDriver, "/kare/uk");
     }
     @FindBy(xpath = "//button[@class='ripple is18-no-btn nope no']")
     private WebElement Ni;
+    @FindBy(xpath = "//button[@class='ripple is18-yes-btn yep yes']")
+    private WebElement Yes;
     @FindBy(xpath = "//*[@class='is18wrap-no no']")
     private WebElement blocker;
     @FindBy(xpath = "//*[@class='gtfo']")
@@ -28,9 +30,22 @@ public class KarePage extends ParentPage {
     private WebElement buttonVhod;
     @FindBy(xpath = "//button[@class='ripple is18-yes-btn yep yes']")
     private WebElement yes18yearsOld;
-    @FindBy(xpath = "/html/body/header/div[2]/div/div[2]/button/text()")
+    @FindBy(xpath = "//button[@class='login ripple js-open-modal auth']")
     private WebElement loginButton;
-
+    @FindBy(xpath = "//input[@id='ticket-checking-input']")
+    private WebElement checkWinTicket;
+    @FindBy(xpath = "//p[@class='k-popup_text txt-cent']//..")
+    private WebElement winTicketPopUp;
+    @FindBy(xpath = "//button[@class='btn checking_button']")
+    private WebElement checkButton;
+    @FindBy(xpath = "//button[@class='k-popup_close js-close-popup']")
+    private WebElement closePopUp;
+    @FindBy(xpath = "//h3[@class='k-popup_headline']")
+    private WebElement loseTicketPopUp;
+    @FindBy (xpath = "//*[@class='wrapp-button']")
+    private WebElement is18popUp;
+    @FindBy (xpath = "//*[@class='modal-inner']")
+    private WebElement loginForm;
     public void openPage() {
         try {
             webDriver.get("https://test.megalot.emict.net/kare/uk");
@@ -80,4 +95,60 @@ public class KarePage extends ParentPage {
     public void clickOnButtonLogin() {
         actionsWithElements.clickOnElement(loginButton);
     }
+
+    public void inputIntoCheckTicketField(String maccode) {
+        actionsWithElements.enterTextIntoInput(checkWinTicket, maccode);
+    }
+
+    public void clickCheckButton() {
+        actionsWithElements.clickOnElement(checkButton);
+    }
+
+
+//    public void isTextPresent() {
+//        actionsWithElements.isElementDisplayed(winTicketPopUp);
+//    }
+//
+//    public void isTextPresent(){
+//        actionsWithElements.isElementDisplayed(loseTicketPopUp);
+//    }
+//        try{
+//            WebElement winTicketPopUp = webDriver.findElement(By.xpath("//p[@class='k-popup_text txt-cent']//.."));
+//            return winTicketPopUp.isDisplayed();
+//        }catch (Exception e){
+//            return false;
+//        }
+//    }
+
+//    public boolean isTextPresent(){
+//        try{
+//            WebElement loseTicketPopUp = webDriver.findElement(By.xpath("//h3[@class='k-popup_headline']"));
+//            return loseTicketPopUp.isDisplayed();
+//        }catch (Exception e){
+//            return false;
+//        }
+//    }
+
+    public void closePopup() {
+        actionsWithElements.clickOnElement(closePopUp);
+    }
+
+
+    public void is18PopUpClose() {
+            actionsWithElements.waitInvisibilityOfElement(is18popUp);
+    }
+
+    public void clickTrue() {
+        actionsWithElements.clickOnElement(Yes);
+    }
+
+    public boolean isLoginFormPresent() {
+        try {
+            WebElement loginForm = webDriver.findElement(By.xpath("//*[@class='ripple sign-np-btn button']"));
+            return loginForm.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
+           }
 }
