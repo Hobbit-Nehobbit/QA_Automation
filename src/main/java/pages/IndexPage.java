@@ -10,7 +10,7 @@ import parentPage.ParentPage;
  */
 public class IndexPage extends ParentPage {
     public IndexPage(WebDriver webDriver) {
-        super(webDriver);
+        super(webDriver, "/index/uk");
     }
 
 

@@ -12,7 +12,7 @@ import parentPage.ParentPage;
  */
 public class MegalotePage extends ParentPage {
     public MegalotePage(WebDriver webDriver) {
-        super(webDriver);
+        super(webDriver, "/megalote/uk");
     }
 
     @FindBy(xpath = "//button[@class='ripple is18-no-btn nope no']")

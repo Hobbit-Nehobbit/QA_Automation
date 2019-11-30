@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class LasVegasPage extends ParentPage {
     public LasVegasPage(WebDriver webDriver) {
-        super(webDriver);
+        super(webDriver, "/las-vegas/uk");
     }
 
     @FindBy(xpath = "//*[@id='username']")
