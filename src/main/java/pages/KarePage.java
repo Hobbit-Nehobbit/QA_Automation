@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import parentPage.ParentPage;
 
 /**
@@ -14,6 +15,7 @@ public class KarePage extends ParentPage {
     public KarePage(WebDriver webDriver) {
         super(webDriver, "/kare/uk");
     }
+
     @FindBy(xpath = "//button[@class='ripple is18-no-btn nope no']")
     private WebElement Ni;
     @FindBy(xpath = "//button[@class='ripple is18-yes-btn yep yes']")
@@ -42,10 +44,11 @@ public class KarePage extends ParentPage {
     private WebElement closePopUp;
     @FindBy(xpath = "//h3[@class='k-popup_headline']")
     private WebElement loseTicketPopUp;
-    @FindBy (xpath = "//*[@class='wrapp-button']")
+    @FindBy(xpath = "//*[@class='wrapp-button']")
     private WebElement is18popUp;
-    @FindBy (xpath = "//*[@class='modal-inner']")
+    @FindBy(xpath = "//*[@class='modal-inner']")
     private WebElement loginForm;
+
     public void openPage() {
         try {
             webDriver.get("https://test.megalot.emict.net/kare/uk");
@@ -67,6 +70,7 @@ public class KarePage extends ParentPage {
             return false;
         }
     }
+
     public boolean isAlarmPresent() {
         try {
             WebElement text = webDriver.findElement(By.xpath("//*[@class='gtfo']"));
@@ -84,7 +88,7 @@ public class KarePage extends ParentPage {
         actionsWithElements.enterTextIntoInput(inputLogin, login);
     }
 
-    public void enterPassInToInputPassword(String password){
+    public void enterPassInToInputPassword(String password) {
         actionsWithElements.enterTextIntoInput(inputPassword, password);
     }
 
@@ -105,29 +109,36 @@ public class KarePage extends ParentPage {
     }
 
 
-//    public void isTextPresent() {
+    public boolean isWinTicketPopUpPresent() {
 //        actionsWithElements.isElementDisplayed(winTicketPopUp);
-//    }
-//
-//    public void isTextPresent(){
-//        actionsWithElements.isElementDisplayed(loseTicketPopUp);
-//    }
-//        try{
-//            WebElement winTicketPopUp = webDriver.findElement(By.xpath("//p[@class='k-popup_text txt-cent']//.."));
-//            return winTicketPopUp.isDisplayed();
-//        }catch (Exception e){
-//            return false;
-//        }
-//    }
+//        return winTicketPopUp.isDisplayed();
+        try {
 
-//    public boolean isTextPresent(){
-//        try{
-//            WebElement loseTicketPopUp = webDriver.findElement(By.xpath("//h3[@class='k-popup_headline']"));
-//            return loseTicketPopUp.isDisplayed();
-//        }catch (Exception e){
-//            return false;
-//        }
-//    }
+            WebElement winTicketPopUp = webDriver.findElement(By.xpath("//h3[@class='k-popup_headline']"));
+            return winTicketPopUp.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isLoseTicketPopUpPresent() {
+        try {
+            WebElement loseTicketPopUp = webDriver.findElement(By.xpath("//h3[@class='k-popup_headline']"));
+            return loseTicketPopUp.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
+    public boolean isTextPresent() {
+        try {
+            WebElement loseTicketPopUp = webDriver.findElement(By.xpath("//h3[@class='k-popup_headline']"));
+            return loseTicketPopUp.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     public void closePopup() {
         actionsWithElements.clickOnElement(closePopUp);
@@ -135,7 +146,7 @@ public class KarePage extends ParentPage {
 
 
     public void is18PopUpClose() {
-            actionsWithElements.waitInvisibilityOfElement(is18popUp);
+        actionsWithElements.waitInvisibilityOfElement(is18popUp);
     }
 
     public void clickTrue() {
@@ -150,5 +161,19 @@ public class KarePage extends ParentPage {
             return false;
         }
 
-           }
+    }
+
+    public boolean isButtonVyhidDisplayed() {
+        try {
+            WebElement button = webDriver.findElement(By.xpath("//*[@class='sign-out']"));
+            return button.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    public void waitForPopUp() {
+        actionsWithElements.waitForPopUp(winTicketPopUp);
+    }
 }

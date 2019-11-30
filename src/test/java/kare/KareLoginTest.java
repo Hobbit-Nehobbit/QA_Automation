@@ -19,6 +19,8 @@ public class KareLoginTest extends AbstractParentTest {
         karePage.enterLoginInToInputLogin("hobbit.love.vedmochka+18");
         karePage.enterPassInToInputPassword("Parol123");
         karePage.clickOnButtonVhod();
+        checkExpectedResult("button Vyhid is present"
+                , karePage.isButtonVyhidDisplayed());
 
     }
 

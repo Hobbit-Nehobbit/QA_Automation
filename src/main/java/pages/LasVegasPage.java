@@ -96,48 +96,48 @@ public class LasVegasPage extends ParentPage {
     }
 
     public void clickOnButtonVhid() {
-        ButtonVhid.click();
+        actionsWithElements.clickOnElement(ButtonVhid);
         logger.info("Click was success");
     }
 
     public void mneEst18() {
-        MneEst18.click();
+        actionsWithElements.clickOnElement(MneEst18);
         logger.info("Soglasen");
     }
 
 
     public void vhodButton() {
-        vhodButton.click();
+        actionsWithElements.clickOnElement(vhodButton);
         logger.info("URA");
     }
 
     public void propusk() {
-        Propusk.click();
+        actionsWithElements.clickOnElement(Propusk);
         logger.info("Propustil");
     }
 
     public void pokupkaButton() {
-        Pokupka.click();
+        actionsWithElements.clickOnElement(Pokupka);
         logger.info("kupil");
     }
 
     public void clickProdovgzity() {
-        Prodovgzity.click();
+        actionsWithElements.clickOnElement(Prodovgzity);
         logger.info("Prodovgziv");
     }
 
     public void clickAvto() {
-        Avto.click();
+        actionsWithElements.clickOnElement(Avto);
         logger.info("Razigral");
     }
 
     public void clickPochaty() {
-        Pochaty.click();
+        actionsWithElements.clickOnElement(Pochaty);
         logger.info("pochaly");
     }
 
     public void closePodskazku() {
-        podskazka.click();
+        actionsWithElements.clickOnElement(podskazka);
         logger.info("zakril podskazku");
     }
 
@@ -151,7 +151,17 @@ public class LasVegasPage extends ParentPage {
     }
 
     public void changeCountOfTicket() {
-        plus.click();
+        actionsWithElements.clickOnElement(plus);
         logger.info("count + 1");
+    }
+
+    public void validLogin(String login, String password) {
+        openPage();
+        mneEst18();
+        propusk();
+        vhodButton();
+        actionsWithElements.enterTextIntoInput(inputLogin, login);
+        actionsWithElements.enterTextIntoInput(inputPass, password);
+        clickOnButtonVhid();
     }
 }

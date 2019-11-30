@@ -1,8 +1,13 @@
 package registrationTest;
 
 import abstractParentTest.AbstractParentTest;
+import libs.CheckingMails;
 import libs.Utils;
 import org.junit.Test;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 /**
  * Created by hobbit on 11/29/19.
@@ -11,7 +16,7 @@ public class Registration extends AbstractParentTest{
     private final String email = "bce450+" + Utils.getDateAndTimeFormated() + "@gmail.com";
     private final String number = Utils.getDateAndTimeFormated();
     @Test
-    public void PositiveRegistration(){
+    public void PositiveRegistration() throws GeneralSecurityException, MessagingException, IOException {
         registrationPage.openPage();
 //
         registrationPage.confirm18Age();
@@ -38,6 +43,7 @@ public class Registration extends AbstractParentTest{
         registrationPage.clickSighUpButton();
         checkExpectedResult("SignUp isn't success"
                 , registrationPage.successLinkisDisplayed());
+
 
 
 
