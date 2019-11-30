@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,10 +21,32 @@ public class RegistrationPage extends ParentPage {
     private WebElement oferta;
     @FindBy(xpath = "//*[@id='account_signup_form']/div[4]/div/div[3]/label/i")
     private WebElement obrobka;
-    @FindBy (xpath = "//*[@id=\"account_signup_form\"]/div[4]/div/div[4]/label/i")
+    @FindBy (xpath = "//*[@id='account_signup_form']/div[4]/div/div[4]/label/i")
     private WebElement confidential;
-    @FindBy ()
+    @FindBy (xpath = "//*[@id='account_signup_form']/div[4]/div/div[5]/label/i")
     private WebElement ukraine;
+    @FindBy(id = "registration_btn")
+    private WebElement nextButton;
+    @FindBy(xpath = "//*[@class='ripple is18-yes-btn yep yes']")
+    private WebElement yes18yearsOld;
+    @FindBy (xpath = "//select[@id='account_birthday_day']")
+    private WebElement dayOfBirth;
+    @FindBy (xpath = "//select[@id='account_birthday_day']//option[19]")
+    private WebElement value18;
+    @FindBy(id = "account_birthday_month")
+    private WebElement monthOfBirth;
+    @FindBy(xpath = "//select[@id='account_birthday_month']//option[7]")
+    private WebElement valueJune;
+    @FindBy (xpath = "//select[@id='account_birthday_year']//option[10]")
+    private WebElement year1993;
+    @FindBy (id = "account_birthday_year")
+    private WebElement year;
+    @FindBy (id = "account_passwd")
+    private WebElement passInput;
+    @FindBy (id = "account_passwd_confirm")
+    private WebElement passConfirm;
+    @FindBy(id = "registration_btn")
+    private WebElement sighnUpButton;
 
     public RegistrationPage(WebDriver webDriver) {
         super(webDriver, "/account/signup");
@@ -50,17 +73,79 @@ public class RegistrationPage extends ParentPage {
     }
 
     public void setOfertaCheckBox() {
-        actionsWithElements.setStateToCheckBox(oferta, "check");
+        actionsWithElements.setStateToCheckBox(oferta, "uncheck");
     }
 
     public void setObrobkaCheckBox() {
-        actionsWithElements.setStateToCheckBox(obrobka, "check");    }
+        actionsWithElements.setStateToCheckBox(obrobka, "uncheck");    }
 
     public void setConfidentialCheckBox() {
-        actionsWithElements.setStateToCheckBox(confidential, "check");
+        actionsWithElements.setStateToCheckBox(confidential, "uncheck");
     }
 
     public void setILiveInUkraine() {
-        actionsWithElements.setStateToCheckBox(ukraine, "check");
+        actionsWithElements.setStateToCheckBox(ukraine, "uncheck");
+    }
+
+    public void clickNextButton() {
+        actionsWithElements.clickOnElement(nextButton);
+    }
+
+    public void confirm18Age() {
+        actionsWithElements.clickOnElement(yes18yearsOld);
+    }
+
+    public boolean buttonBackPresent() {
+        try {
+            WebElement backButton = webDriver.findElement(By.xpath("//*[@class='arrow-back']"));
+            return backButton.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public void clicDayOfBirth() {
+        actionsWithElements.clickOnElement(dayOfBirth);
+    }
+
+    public void checkDayOfBirth() {
+        actionsWithElements.clickOnElement(value18);
+    }
+
+    public void clickMonthOfBirth() {
+        actionsWithElements.clickOnElement(monthOfBirth);
+    }
+
+    public void checkMonthOfBirth() {
+        actionsWithElements.clickOnElement(valueJune);
+    }
+
+    public void clicYearOfBirth() {
+        actionsWithElements.clickOnElement(year);
+    }
+
+    public void checkYearOfBirth() {
+        actionsWithElements.clickOnElement(year1993);
+    }
+
+    public void typePasswordIntoInput(String password) {
+        actionsWithElements.enterTextIntoInput(passInput, password);
+    }
+
+    public void confirmPassword(String password) {
+        actionsWithElements.enterTextIntoInput(passConfirm, password);
+    }
+
+    public void clickSighUpButton() {
+        actionsWithElements.clickOnElement(sighnUpButton);
+    }
+
+    public boolean successLinkisDisplayed() {
+        try {
+            WebElement successLink = webDriver.findElement(By.xpath("//a[@href='https://igra.msl.ua/test_dlya_igroka']"));
+            return successLink.isDisplayed();
+        } catch (Exception e){
+            return false;
+        }
     }
 }

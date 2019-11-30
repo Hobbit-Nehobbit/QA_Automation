@@ -16,11 +16,11 @@ public class LasVegas_2 extends AbstractParentTest {
         lasVegasPage.enterLoginInToFieldLogin("hobbit.love.vedmochka+17");
         lasVegasPage.enterPassInToFieldPassword("Parol123");
         lasVegasPage.clickOnButtonVhid();
-        AbstractParentTest.checkExpectedResult("button Vyhid is present"
+        checkExpectedResult("button Vyhid is present"
                 , lasVegasPage.isButtonVyhidDisplayed());
         lasVegasPage.changeCountOfTicket();
         lasVegasPage.pokupkaButton();
-        AbstractParentTest.checkExpectedResult("З вашого ігрового балансу буде списано 50 грн"
+        checkExpectedResult("З вашого ігрового балансу буде списано 50 грн"
                 , lasVegasPage.isTextPresent());
         lasVegasPage.clickProdovgzity();
 //        AbstractParentTest.checkExpectedResult("Билет куплен"
