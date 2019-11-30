@@ -75,4 +75,8 @@ public class ActionsWithElements {
         webDriverWait_10.until(ExpectedConditions.invisibilityOf(webElement));
         logger.info("Element was closed");
     }
+
+    public void waitForPopUp(WebElement webElement) {
+        webDriverWait_10.until(ExpectedConditions.visibilityOf(webElement));
+    }
 }
