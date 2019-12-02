@@ -43,9 +43,5 @@ public class Registration extends AbstractParentTest{
         registrationPage.clickSighUpButton();
         checkExpectedResult("SignUp isn't success"
                 , registrationPage.successLinkisDisplayed());
-
-
-
-
     }
 }
