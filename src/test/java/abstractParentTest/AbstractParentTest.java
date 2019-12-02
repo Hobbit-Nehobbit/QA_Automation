@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.opera.OperaDriver;
 import pages.*;
 
 import java.io.File;
@@ -23,6 +24,8 @@ public class AbstractParentTest {
     protected MegalotePage megalotePage;
     protected KarePage karePage;
     protected RegistrationPage registrationPage;
+    protected LoginPage loginPage;
+    protected RestorePage restorePage;
     @Before
     public void SetUp() throws Exception {
 //        File file = new File("./src/drivers/chromedriver");
@@ -36,6 +39,9 @@ public class AbstractParentTest {
         megalotePage = new MegalotePage(webDriver);
         karePage = new KarePage(webDriver);
         registrationPage = new RegistrationPage(webDriver);
+        loginPage = new LoginPage(webDriver);
+        restorePage = new RestorePage(webDriver);
+
 
     }
 
@@ -50,6 +56,9 @@ public class AbstractParentTest {
         } else if("ie".equalsIgnoreCase(browser)){
             WebDriverManager.iedriver().arch32().setup();
             return new InternetExplorerDriver();
+        } else if("opera".equalsIgnoreCase(browser)){
+            WebDriverManager.operadriver().setup();
+            return new OperaDriver();
         } else {
             throw new Exception("Check browser var ");
         }

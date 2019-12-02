@@ -68,8 +68,8 @@ public class CheckingMails {
         String q1 = p1.toString();
         System.out.println("EmailBody /n" + q1); // Email HTML
 
-//        inbox.close(true);
-//        store.close();
+        inbox.close(true);
+        store.close();
 
     }
 
