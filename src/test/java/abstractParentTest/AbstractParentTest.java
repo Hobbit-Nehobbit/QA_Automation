@@ -28,9 +28,6 @@ public class AbstractParentTest {
     protected RestorePage restorePage;
     @Before
     public void SetUp() throws Exception {
-//        File file = new File("./src/drivers/chromedriver");
-//        System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-//        webDriver = new ChromeDriver();
         webDriver = driverInit();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

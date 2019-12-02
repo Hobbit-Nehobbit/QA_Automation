@@ -14,6 +14,10 @@ public class RestorePage extends ParentPage {
     private WebElement login;
     @FindBy (id = "btn_recovery_passwd")
     private WebElement sendFormButton;
+    @FindBy (id = "email")
+    private WebElement email;
+    @FindBy(id = "btn_recovery_login")
+    private WebElement sendEmail;
 
     public RestorePage(WebDriver webDriver) {
         super(webDriver, "/account/recovery");
@@ -36,6 +40,15 @@ public class RestorePage extends ParentPage {
         } catch (Exception e){
             return false;
         }
+    }
+
+    public void typeEmailIntoInputLoginRestore(String Email) {
+        actionsWithElements.enterTextIntoInput(email, Email);
+        logger.info(Email + " was inputed success");
+    }
+
+    public void submitButtonClick() {
+        actionsWithElements.clickOnElement(sendEmail);
     }
 }
 
