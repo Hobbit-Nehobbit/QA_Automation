@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import parentPage.ParentPage;
 
 /**
@@ -15,7 +14,6 @@ public class KarePage extends ParentPage {
     public KarePage(WebDriver webDriver) {
         super(webDriver, "/kare/uk");
     }
-
     @FindBy(xpath = "//button[@class='ripple is18-no-btn nope no']")
     private WebElement Ni;
     @FindBy(xpath = "//button[@class='ripple is18-yes-btn yep yes']")
@@ -48,7 +46,16 @@ public class KarePage extends ParentPage {
     private WebElement is18popUp;
     @FindBy(xpath = "//*[@class='modal-inner']")
     private WebElement loginForm;
-
+    @FindBy (id = "table2-auto")
+    private WebElement table2auto;
+    @FindBy(xpath = "//button[@class='coupon_pay btn js-pay-trigger js-coupon_control-inline']")
+    private WebElement payButton;
+    @FindBy (xpath = "//button[@class='k-popup_btn btn js-confirm-payment']")
+    private WebElement confirmPayButton;
+    @FindBy(xpath = "//*[@class='bet_menu-item js-bet-menu-item js-table-1-trigger']")
+    private WebElement tableOne;
+    @FindBy (id = "table1-auto")
+    private WebElement table1auto;
     public void openPage() {
         try {
             webDriver.get("https://test.megalot.emict.net/kare/uk");
@@ -175,5 +182,57 @@ public class KarePage extends ParentPage {
 
     public void waitForPopUp() {
         actionsWithElements.waitForPopUp(winTicketPopUp);
+    }
+
+    public void validLogin(String login, String password) {
+        openPage();
+        accept18yearsOld();
+        is18PopUpClose();
+        clickOnButtonLogin();
+        enterLoginInToInputLogin(login);
+        enterPassInToInputPassword(password);
+        clickOnButtonVhod();
+        logger.info("LogIn Success");
+    }
+
+    public void clickAutoBetTable2() {
+        actionsWithElements.clickOnElement(table2auto);
+        logger.info("AutoBet success");
+    }
+
+    public boolean isEditButtonPresent() {
+        try {
+            WebElement editButton = webDriver.findElement(By.xpath("//button[@class='coupon_bet-action js-edit-bet']"));
+            return editButton.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public void clickPayButton() {
+        actionsWithElements.clickOnElement(payButton);
+        logger.info("Click was success");
+    }
+
+    public boolean isSuccessPopUpDisplayed() {
+        try {
+            WebElement popUp = webDriver.findElement(By.xpath("//*[@class='k-popup js-popup k-popup-visible']"));
+            return popUp.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public void clickConfirmPay() {
+        actionsWithElements.clickOnElement(confirmPayButton);
+        logger.info("Confirm success");
+    }
+
+    public void checkTableOne() {
+        actionsWithElements.clickOnElement(tableOne);
+    }
+
+    public void clickAutoBetTable1() {
+        actionsWithElements.clickOnElement(table1auto);
     }
 }

@@ -23,8 +23,5 @@ public class CheckTiketResult extends AbstractParentTest{
         karePage.clickCheckButton();
         checkExpectedResult("Інформація про білет"
                 , karePage.isLoseTicketPopUpPresent());
-
-
     }
-
 }
