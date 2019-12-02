@@ -21,7 +21,5 @@ public class KareLoginTest extends AbstractParentTest {
         karePage.clickOnButtonVhod();
         checkExpectedResult("button Vyhid is present"
                 , karePage.isButtonVyhidDisplayed());
-
     }
-
 }

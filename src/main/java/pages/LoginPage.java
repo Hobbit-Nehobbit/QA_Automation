@@ -16,6 +16,8 @@ public class LoginPage extends ParentPage{
     private WebElement restorePassword;
     @FindBy (xpath = "//*[@class='wrapp-button']")
     private WebElement is18truePopUp;
+    @FindBy (id = "forgetPassword2-element")
+    private WebElement restoreLogin;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver, "/account/signin");
@@ -42,5 +44,10 @@ public class LoginPage extends ParentPage{
 
     public void waitForPopUp18closed() {
         actionsWithElements.waitInvisibilityOfElement(is18truePopUp);
+    }
+
+    public void clickRestoreLogin() {
+        actionsWithElements.clickOnElement(restoreLogin);
+        logger.info("click on restoreLink success");
     }
 }

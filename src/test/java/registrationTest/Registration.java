@@ -18,7 +18,6 @@ public class Registration extends AbstractParentTest{
     @Test
     public void PositiveRegistration() throws GeneralSecurityException, MessagingException, IOException {
         registrationPage.openPage();
-//
         registrationPage.confirm18Age();
         registrationPage.checkCurrentUrl();
         registrationPage.typeEmailIntoInput(email);
