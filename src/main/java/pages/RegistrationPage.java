@@ -144,4 +144,8 @@ public class RegistrationPage extends ParentPage {
         actionsWithElements.isElementDisplayed(successLink);
         return successLink.isDisplayed();
     }
+
+    public void activateUser(String connetion) {
+        webDriver.get(connetion);
+    }
 }
