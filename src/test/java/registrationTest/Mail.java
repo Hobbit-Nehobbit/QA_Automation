@@ -8,7 +8,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 /**
- * Class was created for testing Gmail's connection
+ * Class was created for testing Gmail's connection.
  **/
 public class Mail extends AbstractParentTest {
     @Test
