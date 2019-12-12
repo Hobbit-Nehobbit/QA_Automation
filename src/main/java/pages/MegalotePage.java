@@ -11,6 +11,9 @@ import parentPage.ParentPage;
  * Created by hobbit on 11/19/19.
  */
 public class MegalotePage extends ParentPage {
+    @FindBy(xpath = "//*[@class='sign-out']")
+    private WebElement buttonVyhid;
+
     public MegalotePage(WebDriver webDriver) {
         super(webDriver, "/megalote/uk");
     }
@@ -44,67 +47,53 @@ public class MegalotePage extends ParentPage {
     }
 
     public void clicFalse() {
-        Ni.click();
+        actionsWithElements.clickOnElement(Ni);
         logger.info("Mne net 18");
     }
 
     public boolean isBlockPresent() {
-        try {
-            WebElement bloker = webDriver.findElement(By.xpath("//*[@class='is18wrap-no no']"));
-            return blocker.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(blocker);
+        return blocker.isDisplayed();
     }
 
     public boolean isAlarmPresent() {
-        try {
-            WebElement text = webDriver.findElement(By.xpath("//*[@class='gtfo']"));
-            return text.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(text);
+        return text.isDisplayed();
     }
 
     public void clickOnLoginButton() {
-        vhodButton.click();
+        actionsWithElements.clickOnElement(vhodButton);
         logger.info("click po knopke vhod proshel");
     }
 
     public void typeLogin(String login) {
-        inputLogin.clear();
-        inputLogin.sendKeys(login);
+        actionsWithElements.enterTextIntoInput(inputLogin, login);
         logger.info(login + " uspeshno vvely");
     }
 
     public void typePassword(String password) {
-        inputPass.clear();
-        inputPass.sendKeys(password);
+        actionsWithElements.enterTextIntoInput(inputPass, password);
         logger.info(password + " uspeshno vvely");
     }
 
     public void clickVhodButton() {
-        loginButton.click();
+        actionsWithElements.clickOnElement(loginButton);
         logger.info("Click po knopke vhod - uspeshniy");
 
     }
 
     public boolean isButtonVyhidDisplayed() {
-        try {
-            WebElement button = webDriver.findElement(By.xpath("//*[@class='sign-out']"));
-            return button.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(buttonVyhid);
+        return buttonVyhid.isDisplayed();
     }
 
     public void mneEst18() {
-        mneEst18.click();
+        actionsWithElements.clickOnElement(mneEst18);
         logger.info("Mne est 18");
     }
 
     public void closeTutorial() {
-        closeTutorial.click();
+        actionsWithElements.clickOnElement(closeTutorial);
         logger.info("zakryl tutorial");
     }
 }

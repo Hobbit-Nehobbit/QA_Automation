@@ -47,6 +47,10 @@ public class RegistrationPage extends ParentPage {
     private WebElement passConfirm;
     @FindBy(id = "registration_btn")
     private WebElement sighnUpButton;
+    @FindBy(xpath = "//a[@href='https://igra.msl.ua/test_dlya_igroka']")
+    private WebElement successLink;
+    @FindBy(xpath = "//*[@class='arrow-back']")
+    private WebElement backButton;
 
     public RegistrationPage(WebDriver webDriver) {
         super(webDriver, "/account/signup");
@@ -96,12 +100,8 @@ public class RegistrationPage extends ParentPage {
     }
 
     public boolean buttonBackPresent() {
-        try {
-            WebElement backButton = webDriver.findElement(By.xpath("//*[@class='arrow-back']"));
-            return backButton.isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(backButton);
+        return backButton.isDisplayed();
     }
 
     public void clicDayOfBirth() {
@@ -141,11 +141,7 @@ public class RegistrationPage extends ParentPage {
     }
 
     public boolean successLinkisDisplayed() {
-        try {
-            WebElement successLink = webDriver.findElement(By.xpath("//a[@href='https://igra.msl.ua/test_dlya_igroka']"));
-            return successLink.isDisplayed();
-        } catch (Exception e){
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(successLink);
+        return successLink.isDisplayed();
     }
 }

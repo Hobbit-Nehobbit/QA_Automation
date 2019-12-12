@@ -8,6 +8,7 @@ public class LasVegasLogin extends AbstractParentTest {
     public void login(){
         lasVegasPage.openPage();
         lasVegasPage.mneEst18();
+        lasVegasPage.is18YearsOldClosed();
         lasVegasPage.vhodButton();
         lasVegasPage.enterLoginInToFieldLogin("hobbit.love.vedmochka+17");
         lasVegasPage.enterPassInToFieldPassword("Parol123");

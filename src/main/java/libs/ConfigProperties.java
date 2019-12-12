@@ -17,4 +17,8 @@ public interface ConfigProperties extends Config {
 	String MySQL_DB();
 	String MySQL_DB_USER();
 	String MySQL_DB_PASSWORD();
+
+    String GMAIL_ACCOUNT();
+
+	String GMAIL_ACCOUNT_PASS();
 }

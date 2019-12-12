@@ -11,9 +11,17 @@ import parentPage.ParentPage;
  * Created by hobbit on 11/19/19.
  */
 public class KarePage extends ParentPage {
+
+
     public KarePage(WebDriver webDriver) {
         super(webDriver, "/kare/uk");
     }
+    @FindBy(xpath = "//*[@class='k-popup js-popup k-popup-visible']")
+    private WebElement popUp;
+    @FindBy(xpath = "//button[@class='coupon_bet-action js-edit-bet']")
+    private WebElement editButton;
+    @FindBy (xpath = "//*[@class='sign-out']")
+    private WebElement buttonVyhid;
     @FindBy(xpath = "//button[@class='ripple is18-no-btn nope no']")
     private WebElement Ni;
     @FindBy(xpath = "//button[@class='ripple is18-yes-btn yep yes']")
@@ -44,7 +52,7 @@ public class KarePage extends ParentPage {
     private WebElement loseTicketPopUp;
     @FindBy(xpath = "//*[@class='wrapp-button']")
     private WebElement is18popUp;
-    @FindBy(xpath = "//*[@class='modal-inner']")
+    @FindBy(xpath = "//button[@class='ripple sign-np-btn button']")
     private WebElement loginForm;
     @FindBy (id = "table2-auto")
     private WebElement table2auto;
@@ -65,26 +73,18 @@ public class KarePage extends ParentPage {
     }
 
     public void clicFalse() {
-        Ni.click();
+        actionsWithElements.clickOnElement(Ni);
         logger.info("Mne net 18");
     }
 
     public boolean isBlockPresent() {
-        try {
-            WebElement blocker = webDriver.findElement(By.xpath("//*[@class='is18wrap-no no']"));
-            return blocker.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(blocker);
+        return blocker.isDisplayed();
     }
 
     public boolean isAlarmPresent() {
-        try {
-            WebElement text = webDriver.findElement(By.xpath("//*[@class='gtfo']"));
-            return text.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(text);
+        return text.isDisplayed();
     }
 
     public void accept18yearsOld() {
@@ -117,35 +117,15 @@ public class KarePage extends ParentPage {
 
 
     public boolean isWinTicketPopUpPresent() {
-//        actionsWithElements.isElementDisplayed(winTicketPopUp);
-//        return winTicketPopUp.isDisplayed();
-        try {
-
-            WebElement winTicketPopUp = webDriver.findElement(By.xpath("//h3[@class='k-popup_headline']"));
-            return winTicketPopUp.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(winTicketPopUp);
+        return winTicketPopUp.isDisplayed();
     }
 
     public boolean isLoseTicketPopUpPresent() {
-        try {
-            WebElement loseTicketPopUp = webDriver.findElement(By.xpath("//h3[@class='k-popup_headline']"));
-            return loseTicketPopUp.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(loseTicketPopUp);
+        return loseTicketPopUp.isDisplayed();
     }
 
-
-    public boolean isTextPresent() {
-        try {
-            WebElement loseTicketPopUp = webDriver.findElement(By.xpath("//h3[@class='k-popup_headline']"));
-            return loseTicketPopUp.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
     public void closePopup() {
         actionsWithElements.clickOnElement(closePopUp);
@@ -161,30 +141,20 @@ public class KarePage extends ParentPage {
     }
 
     public boolean isLoginFormPresent() {
-        try {
-            WebElement loginForm = webDriver.findElement(By.xpath("//*[@class='ripple sign-np-btn button']"));
-            return loginForm.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-
+        actionsWithElements.isElementDisplayed(loginForm);
+        return loginForm.isDisplayed();
     }
 
     public boolean isButtonVyhidDisplayed() {
-        try {
-            WebElement button = webDriver.findElement(By.xpath("//*[@class='sign-out']"));
-            return button.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-
+        actionsWithElements.isElementDisplayed(buttonVyhid);
+        return buttonVyhid.isDisplayed();
     }
 
     public void waitForPopUp() {
         actionsWithElements.waitForPopUp(winTicketPopUp);
     }
 
-    public void validLogin(String login, String password) {
+    public void fillingLoginForm(String login, String password) {
         openPage();
         accept18yearsOld();
         is18PopUpClose();
@@ -201,12 +171,8 @@ public class KarePage extends ParentPage {
     }
 
     public boolean isEditButtonPresent() {
-        try {
-            WebElement editButton = webDriver.findElement(By.xpath("//button[@class='coupon_bet-action js-edit-bet']"));
-            return editButton.isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(editButton);
+        return editButton.isDisplayed();
     }
 
     public void clickPayButton() {
@@ -215,12 +181,8 @@ public class KarePage extends ParentPage {
     }
 
     public boolean isSuccessPopUpDisplayed() {
-        try {
-            WebElement popUp = webDriver.findElement(By.xpath("//*[@class='k-popup js-popup k-popup-visible']"));
-            return popUp.isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(popUp);
+        return popUp.isDisplayed();
     }
 
     public void clickConfirmPay() {
@@ -234,5 +196,9 @@ public class KarePage extends ParentPage {
 
     public void clickAutoBetTable1() {
         actionsWithElements.clickOnElement(table1auto);
+    }
+
+    public void waitForLoginForm() {
+        actionsWithElements.waitVisibilityOfElement(loginForm);
     }
 }

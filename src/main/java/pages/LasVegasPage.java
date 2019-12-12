@@ -47,32 +47,26 @@ public class LasVegasPage extends ParentPage {
     private WebElement ticketNumber;
     @FindBy(xpath = "//button[@class='button-plus']")
     private WebElement plus;
+    @FindBy (xpath = "//span[text()='купити квиток']")
+    private WebElement results;
+    @FindBy (xpath = "//*[@class='sign-out']")
+    private WebElement vyhidButton;
+    @FindBy(xpath = "//*[@class='wrapp-button']")
+    private WebElement is18popUp;
 
     public boolean isButtonVyhidDisplayed() {
-        try {
-            WebElement button = webDriver.findElement(By.xpath("//*[@class='sign-out']"));
-            return button.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(vyhidButton);
+        return vyhidButton.isDisplayed();
     }
 
     public boolean resultsAreDisplayed() {
-        try {
-            WebElement ticket = webDriver.findElement(By.xpath("//span[text()='купити квиток']"));
-            return ticket.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(results);
+        return results.isDisplayed();
     }
 
     public boolean isTextPresent() {
-        try {
-            WebElement text = webDriver.findElement(By.xpath("//span[@class='modal-pay-ticet__text-sum' and text()='50']"));
-            return text.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(ZaOdinBilet);
+        return ZaOdinBilet.isDisplayed();
     }
 
     public void openPage() {
@@ -84,14 +78,12 @@ public class LasVegasPage extends ParentPage {
     }
 
     public void enterLoginInToFieldLogin(String login) {
-        inputLogin.clear();
-        inputLogin.sendKeys(login);
+        actionsWithElements.enterTextIntoInput(inputLogin, login);
         logger.info(login + " was inputed success");
     }
 
     public void enterPassInToFieldPassword(String password) {
-        inputPass.clear();
-        inputPass.sendKeys(password);
+        actionsWithElements.enterTextIntoInput(inputPass, password);
         logger.info(password + " was inputed success");
     }
 
@@ -142,12 +134,8 @@ public class LasVegasPage extends ParentPage {
     }
 
     public boolean tiketBySuccess() {
-        try {
-            WebElement ticketNumber = webDriver.findElement(By.xpath("//ul/li[@class='ticet-number']"));
-            return ticketNumber.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(ticketNumber);
+        return ticketNumber.isDisplayed();
     }
 
     public void changeCountOfTicket() {
@@ -163,5 +151,13 @@ public class LasVegasPage extends ParentPage {
         actionsWithElements.enterTextIntoInput(inputLogin, login);
         actionsWithElements.enterTextIntoInput(inputPass, password);
         clickOnButtonVhid();
+    }
+
+    public void waitForResults() {
+        actionsWithElements.waitVisibilityOfElement(results);
+    }
+
+    public void is18YearsOldClosed() {
+        actionsWithElements.waitInvisibilityOfElement(is18popUp);
     }
 }

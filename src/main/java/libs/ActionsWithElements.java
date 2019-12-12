@@ -79,4 +79,8 @@ public class ActionsWithElements {
     public void waitForPopUp(WebElement webElement) {
         webDriverWait_10.until(ExpectedConditions.visibilityOf(webElement));
     }
+
+    public void waitVisibilityOfElement(WebElement webElement) {
+        webDriverWait_10.until(ExpectedConditions.visibilityOf(webElement));
+    }
 }

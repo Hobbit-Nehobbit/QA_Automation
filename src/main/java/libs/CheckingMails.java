@@ -1,35 +1,130 @@
 package libs;
 
 import com.sun.mail.util.MailSSLSocketFactory;
+import org.aeonbits.owner.ConfigFactory;
+import org.junit.Test;
 
 import javax.mail.*;
-import javax.mail.internet.*;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
+
 
 public class CheckingMails {
-    private static final String SMTP_HOST_NAME = "smtp.gmail.com";
-    private static final int SMTP_HOST_PORT = 465;
-    private static final String SMTP_AUTH_USER = "bce450@gmail.com";
-    private static final String SMTP_AUTH_PWD = "Parol123";
-    public static void check(/*String host, String storeType, String user,
-                             String password*/) throws MessagingException, GeneralSecurityException, IOException {
+    private static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    private static Store store;
+    private static final String POP_HOST_NAME = "spop.gmail.com";
+    private static final String POP_HOST_PORT = "965";
 
-        // -----------------
+    private static final String PART_OF_SUBJECT = "https://test.megalot.emict.net";
+
+
+    public static String check() throws MessagingException, GeneralSecurityException, IOException {
+
+        Folder inbox = getInBoxGmailFolder();
+
+        Message[] messages = inbox.getMessages();
+
+        printMessageToConsole(messages, PART_OF_SUBJECT);
+
+        List<Message> collectMail = getListOfMessageWithPartSubject(messages, PART_OF_SUBJECT);
+
+
+        System.out.println("-----------------");
+
+//        setDeletedFlag(collectMail);
+
+        String linkForRegistartion = "" ;
+        // Get registration link and print it
+        if (collectMail.size() > 0) {
+            String mailBodyAsString = getMailBodyAsString(collectMail.get(0));
+
+            System.out.println(mailBodyAsString);
+            String[] splitedMail = mailBodyAsString.split("\r");
+            List<String> lines = Arrays.stream(splitedMail)
+                    .filter(m -> m.contains("https"))
+                    .map(m -> m.replace("\n", "").replace("\t", ""))
+                    .collect(Collectors.toList());
+
+
+            linkForRegistartion = lines.get(0);
+            System.out.println(linkForRegistartion);
+        }
+
+        // Delete reader file and close folder
+        inbox.close(true);
+        store.close();
+
+        return linkForRegistartion;
+
+    }
+
+    private static String getMailBodyAsString(Message mail) throws IOException, MessagingException {
+        Multipart mp = (Multipart) mail.getContent();
+        Object p = mp.getBodyPart(0).getContent();
+        return p.toString();
+    }
+
+    private void setDeletedFlag(List<Message> collectMail) {
+        collectMail
+                .forEach(a -> {
+                    try {
+                        a.setFlag(Flags.Flag.DELETED, true);
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    private static List<Message> getListOfMessageWithPartSubject(Message[] messages, String partOfSubject) {
+        return Arrays.stream(messages)
+                .filter(m -> {
+                    try {
+                        return m.getSubject().contains(partOfSubject);
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+
+    private static void printMessageToConsole(Message[] messages, String partOfSubject) {
+        Arrays.stream(messages)
+                .filter(m -> {
+                    try {
+                        return m.getSubject().contains(partOfSubject);
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                })
+                .forEach(m -> {
+                    try {
+                        System.out.println("Subject :: "  +m.getSubject() +  " To :: " + Arrays.toString(m.getAllRecipients()));
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+
+    private static Folder getInBoxGmailFolder() throws GeneralSecurityException, MessagingException {
+        return getGmailFolder("INBOX");
+    }
+
+    private static Folder getGmailFolder(String folderName) throws GeneralSecurityException, MessagingException {
         MailSSLSocketFactory sf = new MailSSLSocketFactory();
         sf.setTrustAllHosts(true);
 
-
-        Properties props = new Properties();
-        props.put("mail.imap.ssl.trust", "*");
-        props.put("mail.imap.ssl.socketFactory", sf);
-
         Properties properties = new Properties();
 
-        properties.setProperty("mail.pop3s.host", "pop.gmail.com");
-        properties.setProperty("mail.pop3s.port", "995");
+        properties.setProperty("mail.pop3s.host", POP_HOST_NAME);
+        properties.setProperty("mail.pop3s.port", POP_HOST_PORT);
         properties.setProperty("mail.pop3s.starttls.enable", "true");
         properties.setProperty("mail.pop3s.ssl.trust", "*");
         properties.setProperty("mail.pop3s.auth", "true");
@@ -38,39 +133,15 @@ public class CheckingMails {
         Session emailSession = Session.getDefaultInstance(properties);
 
         //create the POP3 store object and connect with the pop server
-        Store store = emailSession.getStore("pop3s");
+        store = emailSession.getStore("pop3s");
 
-        store.connect("pop.gmail.com", 995, SMTP_AUTH_USER, SMTP_AUTH_PWD);
+        store.connect("pop.gmail.com", 995,
+                configProperties.GMAIL_ACCOUNT(), configProperties.GMAIL_ACCOUNT_PASS());
 
-        Folder inbox = store.getFolder("INBOX");
-        inbox.open(Folder.READ_WRITE);
-        int messageCount = inbox.getMessageCount();
-
-        System.out.println(messageCount);
-        Message[] messages = inbox.getMessages();
-        for (int i = 0; i < messages.length; i++) {
-            System.out.println(messages[i].getMessageNumber() + " Subject " + i + " " + inbox.getMessages()[i].getSubject() + " To: " + inbox.getMessages()[i].getAllRecipients()[0]);
-        }
-
-        inbox.getMessage(3).setFlag(Flags.Flag.DELETED, true);
-
-
-        messages = inbox.getMessages();
-        for (int i = 0; i < messages.length; i++) {
-            System.out.println(messages[i].getMessageNumber() + " Subject " + i + " " + inbox.getMessages()[i].getSubject() + " Flags : " + inbox.getMessages()[i].getFlags().getSystemFlags().length);
-        }
-
-        Multipart mp = (Multipart) inbox.getMessage(3).getContent();
-        Object p = mp.getBodyPart(0).getContent();
-        String q = p.toString();
-        System.out.println("EmailBody /n" + q); /// Email text
-        Object p1 = mp.getBodyPart(1).getContent();
-        String q1 = p1.toString();
-        System.out.println("EmailBody /n" + q1); // Email HTML
-
-        inbox.close(true);
-        store.close();
-
+        Folder folder = store.getFolder(folderName);
+        folder.open(Folder.READ_WRITE);
+        return folder;
     }
+
 
 }

@@ -18,6 +18,8 @@ public class RestorePage extends ParentPage {
     private WebElement email;
     @FindBy(id = "btn_recovery_login")
     private WebElement sendEmail;
+    @FindBy(xpath = "//h2[@class='block_header']")
+    private WebElement restoreMessage;
 
     public RestorePage(WebDriver webDriver) {
         super(webDriver, "/account/recovery");
@@ -34,12 +36,8 @@ public class RestorePage extends ParentPage {
     }
 
     public boolean isSuccessTextDisplayed() {
-        try {
-            WebElement restoreMessage = webDriver.findElement(By.xpath("//h2[@class='block_header']"));
-            return restoreMessage.isDisplayed();
-        } catch (Exception e){
-            return false;
-        }
+        actionsWithElements.isElementDisplayed(restoreMessage);
+        return restoreMessage.isDisplayed();
     }
 
     public void typeEmailIntoInputLoginRestore(String Email) {

@@ -22,6 +22,7 @@ public class is18YearsOld extends AbstractParentTest {
         karePage.clickTrue();
         karePage.is18PopUpClose();
         karePage.clickOnButtonLogin();
+        karePage.waitForLoginForm();
         checkExpectedResult("Element isn't clickable"
                 , karePage.isLoginFormPresent());
     }

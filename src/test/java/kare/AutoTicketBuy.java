@@ -9,7 +9,7 @@ import org.junit.Test;
 public class AutoTicketBuy extends AbstractParentTest {
     @Test
     public void buyTicketTable2(){
-        karePage.validLogin("hobbit.love.vedmochka+17", "Parol123");
+        karePage.fillingLoginForm("hobbit.love.vedmochka+17", "Parol123");
         checkExpectedResult("button Vyhid is present"
                 , karePage.isButtonVyhidDisplayed());
         karePage.clickAutoBetTable2();
@@ -23,7 +23,7 @@ public class AutoTicketBuy extends AbstractParentTest {
 
     @Test
     public void byTicketTable1(){
-        karePage.validLogin("hobbit.love.vedmochka+17", "Parol123");
+        karePage.fillingLoginForm("hobbit.love.vedmochka+17", "Parol123");
         checkExpectedResult("button Vyhid is present"
                 , karePage.isButtonVyhidDisplayed());
         karePage.checkTableOne();
