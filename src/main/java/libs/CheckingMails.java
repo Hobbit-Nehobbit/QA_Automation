@@ -20,7 +20,7 @@ public class CheckingMails {
     private static final String POP_HOST_NAME = "spop.gmail.com";
     private static final String POP_HOST_PORT = "965";
 
-    private static final String PART_OF_SUBJECT = "https://test.megalot.emict.net";
+    private static final String PART_OF_SUBJECT = "bce450";
 
 
     public static String check() throws MessagingException, GeneralSecurityException, IOException {

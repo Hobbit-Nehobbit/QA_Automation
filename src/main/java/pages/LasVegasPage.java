@@ -143,7 +143,7 @@ public class LasVegasPage extends ParentPage {
         logger.info("count + 1");
     }
 
-    public void validLogin(String login, String password) {
+    public void fillingLoginForm(String login, String password) {
         openPage();
         mneEst18();
         propusk();

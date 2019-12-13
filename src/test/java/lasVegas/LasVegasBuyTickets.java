@@ -9,7 +9,7 @@ import org.junit.Test;
 public class LasVegasBuyTickets extends AbstractParentTest{
     @Test
     public void oneTicketBuy(){
-        lasVegasPage.validLogin("hobbit.love.vedmochka+17", "Parol123");
+        lasVegasPage.fillingLoginForm("hobbit.love.vedmochka+17", "Parol123");
         checkExpectedResult("button Vyhid is present"
                 , lasVegasPage.isButtonVyhidDisplayed());
         lasVegasPage.pokupkaButton();

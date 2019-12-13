@@ -13,6 +13,8 @@ import java.security.GeneralSecurityException;
 public class Mail extends AbstractParentTest {
     @Test
     public void connectToGmail() throws GeneralSecurityException, MessagingException, IOException {
-        CheckingMails.check();
+        String connetion = CheckingMails.check();
+        registrationPage.activateUser(connetion);
+
     }
 }

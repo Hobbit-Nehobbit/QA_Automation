@@ -78,8 +78,8 @@ public class KarePage extends ParentPage {
     }
 
     public boolean isBlockPresent() {
-        actionsWithElements.isElementDisplayed(blocker);
-        return blocker.isDisplayed();
+        return actionsWithElements.isElementDisplayed(blocker);
+        //return blocker.isDisplayed();
     }
 
     public boolean isAlarmPresent() {
@@ -162,7 +162,7 @@ public class KarePage extends ParentPage {
         enterLoginInToInputLogin(login);
         enterPassInToInputPassword(password);
         clickOnButtonVhod();
-        logger.info("LogIn Success");
+        logger.info("All field was filling Success");
     }
 
     public void clickAutoBetTable2() {
