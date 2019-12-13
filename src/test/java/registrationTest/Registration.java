@@ -1,6 +1,7 @@
 package registrationTest;
 
 import abstractParentTest.AbstractParentTest;
+import io.qameta.allure.Step;
 import libs.CheckingMails;
 import libs.Utils;
 import org.junit.Test;
@@ -16,13 +17,16 @@ public class Registration extends AbstractParentTest{
     private final String email = "bce450+" + Utils.getDateAndTimeFormated() + "@gmail.com";
     private final String number = Utils.getDateAndTimeFormated();
     @Test
-    public void PositiveRegistration() throws GeneralSecurityException, MessagingException, IOException {
+    public void PositiveRegistration() throws GeneralSecurityException, MessagingException, IOException, InterruptedException {
+
         registrationPage.openPage();
         registrationPage.confirm18Age();
         registrationPage.checkCurrentUrl();
         registrationPage.typeEmailIntoInput(email);
-        registrationPage.typeMobileOperatorCode("50");
+        registrationPage.waitForValidationOfEmail("е-mail доступний");
+        registrationPage.typeMobileOperatorCode(number);
         registrationPage.typeMobileNumber(number);
+        registrationPage.waitForValidationNumber("номер телефону доступний");
         registrationPage.setOfertaCheckBox();
         registrationPage.setObrobkaCheckBox();
         registrationPage.setConfidentialCheckBox();
@@ -43,5 +47,9 @@ public class Registration extends AbstractParentTest{
         checkExpectedResult("SignUp isn't success"
                 , registrationPage.successLinkisDisplayed());
 
+        Thread.sleep(50000);
+        registrationPage.clickActivateLinkFromMail();
+        checkExpectedResult("Account activation was failed"
+                , loginPage.exitButtonIsDisplayed());
     }
 }

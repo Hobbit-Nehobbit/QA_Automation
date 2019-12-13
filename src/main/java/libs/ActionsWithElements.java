@@ -83,4 +83,9 @@ public class ActionsWithElements {
     public void waitVisibilityOfElement(WebElement webElement) {
         webDriverWait_10.until(ExpectedConditions.visibilityOf(webElement));
     }
+
+    public void waitForText(WebElement webElement, String text){
+        webDriverWait_10.until(ExpectedConditions.textToBePresentInElement(webElement, text));
+    }
+
 }

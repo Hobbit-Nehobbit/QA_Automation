@@ -1,11 +1,16 @@
 package pages;
 
+import libs.CheckingMails;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import parentPage.ParentPage;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 /**
  * Created by hobbit on 11/29/19.
@@ -51,6 +56,12 @@ public class RegistrationPage extends ParentPage {
     private WebElement successLink;
     @FindBy(xpath = "//*[@class='arrow-back']")
     private WebElement backButton;
+    @FindBy (id = "account_email_check")
+    private WebElement email_check;
+    @FindBy(id = "account_phone_check")
+    private WebElement phone_check;
+    @FindBy(id = "account_signup_form")
+    private WebElement signup_form;
 
     public RegistrationPage(WebDriver webDriver) {
         super(webDriver, "/account/signup");
@@ -100,8 +111,7 @@ public class RegistrationPage extends ParentPage {
     }
 
     public boolean buttonBackPresent() {
-        actionsWithElements.isElementDisplayed(backButton);
-        return backButton.isDisplayed();
+        return actionsWithElements.isElementDisplayed(backButton);
     }
 
     public void clicDayOfBirth() {
@@ -141,11 +151,24 @@ public class RegistrationPage extends ParentPage {
     }
 
     public boolean successLinkisDisplayed() {
-        actionsWithElements.isElementDisplayed(successLink);
-        return successLink.isDisplayed();
+        return actionsWithElements.isElementDisplayed(successLink);
     }
 
     public void activateUser(String connetion) {
         webDriver.get(connetion);
+    }
+
+    public void clickActivateLinkFromMail() throws GeneralSecurityException, MessagingException, IOException {
+        String activation = CheckingMails.check();
+        webDriver.get(activation);
+    }
+
+    public void waitForValidationOfEmail(String text) {
+        actionsWithElements.waitForText(email_check, text);
+    }
+
+    public void waitForValidationNumber(String text) {
+        actionsWithElements.clickOnElement(signup_form);
+        actionsWithElements.waitForText(phone_check, text);
     }
 }

@@ -36,8 +36,7 @@ public class RestorePage extends ParentPage {
     }
 
     public boolean isSuccessTextDisplayed() {
-        actionsWithElements.isElementDisplayed(restoreMessage);
-        return restoreMessage.isDisplayed();
+        return actionsWithElements.isElementDisplayed(restoreMessage);
     }
 
     public void typeEmailIntoInputLoginRestore(String Email) {

@@ -55,18 +55,15 @@ public class LasVegasPage extends ParentPage {
     private WebElement is18popUp;
 
     public boolean isButtonVyhidDisplayed() {
-        actionsWithElements.isElementDisplayed(vyhidButton);
-        return vyhidButton.isDisplayed();
+        return actionsWithElements.isElementDisplayed(vyhidButton);
     }
 
     public boolean resultsAreDisplayed() {
-        actionsWithElements.isElementDisplayed(results);
-        return results.isDisplayed();
+        return actionsWithElements.isElementDisplayed(results);
     }
 
     public boolean isTextPresent() {
-        actionsWithElements.isElementDisplayed(ZaOdinBilet);
-        return ZaOdinBilet.isDisplayed();
+        return actionsWithElements.isElementDisplayed(ZaOdinBilet);
     }
 
     public void openPage() {
@@ -134,8 +131,7 @@ public class LasVegasPage extends ParentPage {
     }
 
     public boolean tiketBySuccess() {
-        actionsWithElements.isElementDisplayed(ticketNumber);
-        return ticketNumber.isDisplayed();
+        return actionsWithElements.isElementDisplayed(ticketNumber);
     }
 
     public void changeCountOfTicket() {

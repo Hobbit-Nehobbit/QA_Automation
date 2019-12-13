@@ -18,6 +18,8 @@ public class LoginPage extends ParentPage{
     private WebElement is18truePopUp;
     @FindBy (id = "forgetPassword2-element")
     private WebElement restoreLogin;
+    @FindBy (id = "auth-message")
+    private WebElement auth_message;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver, "/account/signin");
@@ -49,5 +51,8 @@ public class LoginPage extends ParentPage{
     public void clickRestoreLogin() {
         actionsWithElements.clickOnElement(restoreLogin);
         logger.info("click on restoreLink success");
+    }
+    public boolean exitButtonIsDisplayed() {
+        return actionsWithElements.isElementDisplayed(auth_message);
     }
 }
