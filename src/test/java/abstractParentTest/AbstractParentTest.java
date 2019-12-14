@@ -26,6 +26,7 @@ public class AbstractParentTest {
     protected RegistrationPage registrationPage;
     protected LoginPage loginPage;
     protected RestorePage restorePage;
+    protected FirstDepositPage firstDepositPage;
     @Before
     public void SetUp() throws Exception {
         webDriver = driverInit();
@@ -38,6 +39,7 @@ public class AbstractParentTest {
         registrationPage = new RegistrationPage(webDriver);
         loginPage = new LoginPage(webDriver);
         restorePage = new RestorePage(webDriver);
+        firstDepositPage = new FirstDepositPage(webDriver);
 
 
     }
@@ -60,10 +62,10 @@ public class AbstractParentTest {
             throw new Exception("Check browser var ");
         }
     }
-    @After
-    public void tearDown(){
-        webDriver.quit();
-    }
+//    @After
+//    public void tearDown(){
+//        webDriver.quit();
+//    }
 
     public static void checkExpectedResult(String message, boolean actualResult){
         Assert.assertEquals(message, true, actualResult);

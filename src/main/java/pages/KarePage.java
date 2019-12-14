@@ -79,12 +79,10 @@ public class KarePage extends ParentPage {
 
     public boolean isBlockPresent() {
         return actionsWithElements.isElementDisplayed(blocker);
-        //return blocker.isDisplayed();
     }
 
     public boolean isAlarmPresent() {
-        actionsWithElements.isElementDisplayed(text);
-        return text.isDisplayed();
+        return actionsWithElements.isElementDisplayed(text);
     }
 
     public void accept18yearsOld() {
@@ -117,13 +115,11 @@ public class KarePage extends ParentPage {
 
 
     public boolean isWinTicketPopUpPresent() {
-        actionsWithElements.isElementDisplayed(winTicketPopUp);
-        return winTicketPopUp.isDisplayed();
+       return actionsWithElements.isElementDisplayed(winTicketPopUp);
     }
 
     public boolean isLoseTicketPopUpPresent() {
-        actionsWithElements.isElementDisplayed(loseTicketPopUp);
-        return loseTicketPopUp.isDisplayed();
+        return actionsWithElements.isElementDisplayed(loseTicketPopUp);
     }
 
 
@@ -141,13 +137,11 @@ public class KarePage extends ParentPage {
     }
 
     public boolean isLoginFormPresent() {
-        actionsWithElements.isElementDisplayed(loginForm);
-        return loginForm.isDisplayed();
+        return actionsWithElements.isElementDisplayed(loginForm);
     }
 
     public boolean isButtonVyhidDisplayed() {
-        actionsWithElements.isElementDisplayed(buttonVyhid);
-        return buttonVyhid.isDisplayed();
+        return actionsWithElements.isElementDisplayed(buttonVyhid);
     }
 
     public void waitForPopUp() {
@@ -171,8 +165,7 @@ public class KarePage extends ParentPage {
     }
 
     public boolean isEditButtonPresent() {
-        actionsWithElements.isElementDisplayed(editButton);
-        return editButton.isDisplayed();
+        return actionsWithElements.isElementDisplayed(editButton);
     }
 
     public void clickPayButton() {
@@ -181,8 +174,7 @@ public class KarePage extends ParentPage {
     }
 
     public boolean isSuccessPopUpDisplayed() {
-        actionsWithElements.isElementDisplayed(popUp);
-        return popUp.isDisplayed();
+        return actionsWithElements.isElementDisplayed(popUp);
     }
 
     public void clickConfirmPay() {

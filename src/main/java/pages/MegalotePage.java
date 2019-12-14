@@ -52,13 +52,11 @@ public class MegalotePage extends ParentPage {
     }
 
     public boolean isBlockPresent() {
-        actionsWithElements.isElementDisplayed(blocker);
-        return blocker.isDisplayed();
+        return actionsWithElements.isElementDisplayed(blocker);
     }
 
     public boolean isAlarmPresent() {
-        actionsWithElements.isElementDisplayed(text);
-        return text.isDisplayed();
+        return actionsWithElements.isElementDisplayed(text);
     }
 
     public void clickOnLoginButton() {
@@ -83,8 +81,7 @@ public class MegalotePage extends ParentPage {
     }
 
     public boolean isButtonVyhidDisplayed() {
-        actionsWithElements.isElementDisplayed(buttonVyhid);
-        return buttonVyhid.isDisplayed();
+        return actionsWithElements.isElementDisplayed(buttonVyhid);
     }
 
     public void mneEst18() {
