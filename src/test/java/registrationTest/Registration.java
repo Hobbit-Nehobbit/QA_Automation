@@ -1,8 +1,7 @@
 package registrationTest;
 
 import abstractParentTest.AbstractParentTest;
-import io.qameta.allure.Step;
-import libs.CheckingMails;
+import io.qameta.allure.*;
 import libs.Utils;
 import org.junit.Test;
 
@@ -13,7 +12,16 @@ import java.security.GeneralSecurityException;
 /**
  * Created by hobbit on 11/29/19.
  */
+@Epic("Personal Profile")
+@Feature("Registration test")
 public class Registration extends AbstractParentTest{
+//    @Description("Some detailed test description")
+//    @Story("Base support for bdd annotations")
+//    @Link("https://example.org")
+//    @Link(name = "allure", type = "mylink")
+//    @Issue("123")
+//    @Issue("432")
+//    @Severity(SeverityLevel.CRITICAL)
     private final String email = "bce450+" + Utils.getDateAndTimeFormated() + "@gmail.com";
     private final String number = Utils.getDateAndTimeFormated();
     @Test
@@ -23,10 +31,10 @@ public class Registration extends AbstractParentTest{
         registrationPage.confirm18Age();
         registrationPage.checkCurrentUrl();
         registrationPage.typeEmailIntoInput(email);
-        registrationPage.waitForValidationOfEmail("е-mail доступний");
+//        registrationPage.waitForValidationOfEmail("е-mail доступний");
         registrationPage.typeMobileOperatorCode(number);
         registrationPage.typeMobileNumber(number);
-        registrationPage.waitForValidationNumber("номер телефону доступний");
+//        registrationPage.waitForValidationNumber("номер телефону доступний");
         registrationPage.setOfertaCheckBox();
         registrationPage.setObrobkaCheckBox();
         registrationPage.setConfidentialCheckBox();

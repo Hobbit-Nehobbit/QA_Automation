@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,26 +25,26 @@ public class RestorePage extends ParentPage {
     public RestorePage(WebDriver webDriver) {
         super(webDriver, "/account/recovery");
     }
-
+    @Step
     public void typeEmailOrLoginIntoInputPasswordRestore(String loginOrEmail) {
         actionsWithElements.enterTextIntoInput(login, loginOrEmail);
         logger.info(loginOrEmail + " was inputed success");
     }
-
+    @Step
     public void submitForm() {
         actionsWithElements.clickOnElement(sendFormButton);
         logger.info("Button was clicked success");
     }
-
+    @Step
     public boolean isSuccessTextDisplayed() {
         return actionsWithElements.isElementDisplayed(restoreMessage);
     }
-
+    @Step
     public void typeEmailIntoInputLoginRestore(String Email) {
         actionsWithElements.enterTextIntoInput(email, Email);
         logger.info(Email + " was inputed success");
     }
-
+    @Step
     public void submitButtonClick() {
         actionsWithElements.clickOnElement(sendEmail);
     }
