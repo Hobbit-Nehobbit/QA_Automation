@@ -16,7 +16,7 @@ public class LoginTest extends AbstractParentTest {
         megalotePage.typeLogin("hobbit.love.vedmochka+17");
         megalotePage.typePassword("Parol123");
         megalotePage.clickVhodButton();
-        AbstractParentTest.checkExpectedResult("button Vyhid is present"
+        checkExpectedResult("button Vyhid is present"
                 , megalotePage.isButtonVyhidDisplayed());
 
     }
