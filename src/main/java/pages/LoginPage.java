@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +25,7 @@ public class LoginPage extends ParentPage{
     public LoginPage(WebDriver webDriver) {
         super(webDriver, "/account/signin");
     }
-
+    @Step
     public void openPage() {
         try {
             webDriver.get("https://test.megalot.emict.net/account/signin");
@@ -33,25 +34,26 @@ public class LoginPage extends ParentPage{
         }
 
     }
-
+    @Step
     public void is18True() {
         actionsWithElements.clickOnElement(yes18Button);
         logger.info("Yes, I'm 18 years old");
     }
-
+    @Step
     public void clickRestorePassword() {
         actionsWithElements.clickOnElement(restorePassword);
         logger.info("click on restoreLink success");
     }
-
+    @Step
     public void waitForPopUp18closed() {
         actionsWithElements.waitInvisibilityOfElement(is18truePopUp);
     }
-
+    @Step
     public void clickRestoreLogin() {
         actionsWithElements.clickOnElement(restoreLogin);
         logger.info("click on restoreLink success");
     }
+    @Step
     public boolean exitButtonIsDisplayed() {
         return actionsWithElements.isElementDisplayed(auth_message);
     }
