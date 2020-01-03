@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -53,19 +54,19 @@ public class LasVegasPage extends ParentPage {
     private WebElement vyhidButton;
     @FindBy(xpath = "//*[@class='wrapp-button']")
     private WebElement is18popUp;
-
+    @Step
     public boolean isButtonVyhidDisplayed() {
         return actionsWithElements.isElementDisplayed(vyhidButton);
     }
-
+    @Step
     public boolean resultsAreDisplayed() {
         return actionsWithElements.isElementDisplayed(results);
     }
-
+    @Step
     public boolean isTextPresent() {
         return actionsWithElements.isElementDisplayed(ZaOdinBilet);
     }
-
+    @Step
     public void openPage() {
         try {
             webDriver.get("https://test.megalot.emict.net/las-vegas/uk");
@@ -73,72 +74,72 @@ public class LasVegasPage extends ParentPage {
             Assert.fail("Can't work with page");
         }
     }
-
+    @Step
     public void enterLoginInToFieldLogin(String login) {
         actionsWithElements.enterTextIntoInput(inputLogin, login);
         logger.info(login + " was inputed success");
     }
-
+    @Step
     public void enterPassInToFieldPassword(String password) {
         actionsWithElements.enterTextIntoInput(inputPass, password);
         logger.info(password + " was inputed success");
     }
-
+    @Step
     public void clickOnButtonVhid() {
         actionsWithElements.clickOnElement(ButtonVhid);
         logger.info("Click was success");
     }
-
+    @Step
     public void mneEst18() {
         actionsWithElements.clickOnElement(MneEst18);
         logger.info("Soglasen");
     }
 
-
+    @Step
     public void vhodButton() {
         actionsWithElements.clickOnElement(vhodButton);
         logger.info("URA");
     }
-
+    @Step
     public void propusk() {
         actionsWithElements.clickOnElement(Propusk);
         logger.info("Propustil");
     }
-
+    @Step
     public void pokupkaButton() {
         actionsWithElements.clickOnElement(Pokupka);
         logger.info("kupil");
     }
-
+    @Step
     public void clickProdovgzity() {
         actionsWithElements.clickOnElement(Prodovgzity);
         logger.info("Prodovgziv");
     }
-
+    @Step
     public void clickAvto() {
         actionsWithElements.clickOnElement(Avto);
         logger.info("Razigral");
     }
-
+    @Step
     public void clickPochaty() {
         actionsWithElements.clickOnElement(Pochaty);
         logger.info("pochaly");
     }
-
+    @Step
     public void closePodskazku() {
         actionsWithElements.clickOnElement(podskazka);
         logger.info("zakril podskazku");
     }
-
+    @Step
     public boolean tiketBySuccess() {
         return actionsWithElements.isElementDisplayed(ticketNumber);
     }
-
+    @Step
     public void changeCountOfTicket() {
         actionsWithElements.clickOnElement(plus);
         logger.info("count + 1");
     }
-
+    @Step
     public void fillingLoginForm(String login, String password) {
         openPage();
         mneEst18();
@@ -148,11 +149,11 @@ public class LasVegasPage extends ParentPage {
         actionsWithElements.enterTextIntoInput(inputPass, password);
         clickOnButtonVhid();
     }
-
+    @Step
     public void waitForResults() {
         actionsWithElements.waitVisibilityOfElement(results);
     }
-
+    @Step
     public void is18YearsOldClosed() {
         actionsWithElements.waitInvisibilityOfElement(is18popUp);
     }

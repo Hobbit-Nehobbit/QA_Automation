@@ -1,5 +1,6 @@
 package parentPage;
 
+import io.qameta.allure.Step;
 import libs.ActionsWithElements;
 import libs.ConfigProperties;
 import org.aeonbits.owner.ConfigFactory;
@@ -27,7 +28,7 @@ public class ParentPage {
     }
 
 
-
+    @Step
     public void checkCurrentUrl(){
         try{
             Assert.assertEquals("Url is not expected", expectedUrl, webDriver.getCurrentUrl());

@@ -13,13 +13,13 @@ public class LasVegasBuyTickets extends AbstractParentTest{
         checkExpectedResult("button Vyhid is present"
                 , lasVegasPage.isButtonVyhidDisplayed());
         lasVegasPage.pokupkaButton();
-        AbstractParentTest.checkExpectedResult("З вашого ігрового балансу буде списано 50 грн"
+        checkExpectedResult("З вашого ігрового балансу буде списано 50 грн"
                 , lasVegasPage.isTextPresent());
         lasVegasPage.clickProdovgzity();
-        AbstractParentTest.checkExpectedResult("Билет куплен"
+        checkExpectedResult("Билет куплен"
                 , lasVegasPage.tiketBySuccess());
         lasVegasPage.clickAvto();
-        AbstractParentTest.checkExpectedResult("Rezul'taty"
+        checkExpectedResult("Rezul'taty"
                 , lasVegasPage.resultsAreDisplayed());
     }
 }
