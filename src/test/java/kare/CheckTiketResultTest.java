@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * Created by hobbit on 11/21/19.
  */
-public class CheckTiketResult extends AbstractParentTest{
+public class CheckTiketResultTest extends AbstractParentTest{
 
     @Test
     public void checkWinTiketResult(){
