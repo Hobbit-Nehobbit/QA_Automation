@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.CheckingMails;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -66,7 +67,7 @@ public class RegistrationPage extends ParentPage {
     public RegistrationPage(WebDriver webDriver) {
         super(webDriver, "/account/signup");
     }
-
+    @Step
     public void openPage() {
         try {
             webDriver.get("https://test.megalot.emict.net/account/signup");
@@ -74,99 +75,99 @@ public class RegistrationPage extends ParentPage {
             Assert.fail("Can't work with browser");
         }
     }
-
+    @Step
     public void typeEmailIntoInput(String email) {
         actionsWithElements.enterTextIntoInput(emailInput, email);
     }
-
+    @Step
     public void typeMobileOperatorCode(String code) {
         actionsWithElements.enterTextIntoInput(account_phone_code, code);
     }
-
+    @Step
     public void typeMobileNumber(String number) {
         actionsWithElements.enterTextIntoInput(account_phone_number, number);
     }
-
+    @Step
     public void setOfertaCheckBox() {
         actionsWithElements.setStateToCheckBox(oferta, "uncheck");
     }
-
+    @Step
     public void setObrobkaCheckBox() {
         actionsWithElements.setStateToCheckBox(obrobka, "uncheck");    }
-
+    @Step
     public void setConfidentialCheckBox() {
         actionsWithElements.setStateToCheckBox(confidential, "uncheck");
     }
-
+    @Step
     public void setILiveInUkraine() {
         actionsWithElements.setStateToCheckBox(ukraine, "uncheck");
     }
-
+    @Step
     public void clickNextButton() {
         actionsWithElements.clickOnElement(nextButton);
     }
-
+    @Step
     public void confirm18Age() {
         actionsWithElements.clickOnElement(yes18yearsOld);
     }
-
+    @Step
     public boolean buttonBackPresent() {
         return actionsWithElements.isElementDisplayed(backButton);
     }
-
+    @Step
     public void clicDayOfBirth() {
         actionsWithElements.clickOnElement(dayOfBirth);
     }
-
+    @Step
     public void checkDayOfBirth() {
         actionsWithElements.clickOnElement(value18);
     }
-
+    @Step
     public void clickMonthOfBirth() {
         actionsWithElements.clickOnElement(monthOfBirth);
     }
-
+    @Step
     public void checkMonthOfBirth() {
         actionsWithElements.clickOnElement(valueJune);
     }
-
+    @Step
     public void clicYearOfBirth() {
         actionsWithElements.clickOnElement(year);
     }
-
+    @Step
     public void checkYearOfBirth() {
         actionsWithElements.clickOnElement(year1993);
     }
-
+    @Step
     public void typePasswordIntoInput(String password) {
         actionsWithElements.enterTextIntoInput(passInput, password);
     }
-
+    @Step
     public void confirmPassword(String password) {
         actionsWithElements.enterTextIntoInput(passConfirm, password);
     }
-
+    @Step
     public void clickSighUpButton() {
         actionsWithElements.clickOnElement(sighnUpButton);
     }
-
+    @Step
     public boolean successLinkisDisplayed() {
         return actionsWithElements.isElementDisplayed(successLink);
     }
-
+    @Step
     public void activateUser(String connetion) {
         webDriver.get(connetion);
     }
-
+    @Step
     public void clickActivateLinkFromMail() throws GeneralSecurityException, MessagingException, IOException {
         String activation = CheckingMails.check();
         webDriver.get(activation);
     }
-
+    @Step
     public void waitForValidationOfEmail(String text) {
         actionsWithElements.waitForText(email_check, text);
     }
-
+    @Step
     public void waitForValidationNumber(String text) {
         actionsWithElements.clickOnElement(signup_form);
         actionsWithElements.waitForText(phone_check, text);

@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * Created by hobbit on 11/18/19.
  */
-public class LasVegasBuyTickets extends AbstractParentTest{
+public class LasVegasBuyTicketsTest extends AbstractParentTest{
     @Test
     public void oneTicketBuy(){
         lasVegasPage.fillingLoginForm("hobbit.love.vedmochka+17", "Parol123");

@@ -1,13 +1,23 @@
 package kare;
 
 import abstractParentTest.AbstractParentTest;
+import io.qameta.allure.*;
 import org.junit.Test;
 
 /**
  * Created by hobbit on 12/2/19.
  */
-public class AutoTicketBuy extends AbstractParentTest {
-    @Test
+@Epic("Las-Vegas")
+@Feature("TicketBuy")
+public class AutoTicketBuyTest extends AbstractParentTest {
+        @Description("Some detailed test description")
+    @Story("Base support for bdd annotations")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test()
     public void buyTicketTable2(){
         karePage.fillingLoginForm("hobbit.love.vedmochka+17", "Parol123");
         checkExpectedResult("button Vyhid is present"
@@ -21,7 +31,15 @@ public class AutoTicketBuy extends AbstractParentTest {
                 , karePage.isSuccessPopUpDisplayed());
     }
 
-    @Test
+
+    @Description("Some detailed test description")
+    @Story("Base support for bdd annotations")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test()
     public void byTicketTable1(){
         karePage.fillingLoginForm("hobbit.love.vedmochka+17", "Parol123");
         checkExpectedResult("button Vyhid is present"

@@ -13,15 +13,9 @@ import java.security.GeneralSecurityException;
  * Created by hobbit on 11/29/19.
  */
 @Epic("Personal Profile")
-@Feature("Registration test")
-public class Registration extends AbstractParentTest{
-//    @Description("Some detailed test description")
-//    @Story("Base support for bdd annotations")
-//    @Link("https://example.org")
-//    @Link(name = "allure", type = "mylink")
-//    @Issue("123")
-//    @Issue("432")
-//    @Severity(SeverityLevel.CRITICAL)
+@Feature("RegistrationTest test")
+public class RegistrationTest extends AbstractParentTest{
+
     private final String email = "bce450+" + Utils.getDateAndTimeFormated() + "@gmail.com";
     private final String number = Utils.getDateAndTimeFormated();
     @Test
